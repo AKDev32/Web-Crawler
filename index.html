@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WebCrawler4J - A powerful web crawler built with modern web technologies">
+    <title>WebCrawler - Professional Web Crawling Tool</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                        </svg>
+                    </div>
+                    <h1>WebCrawler</h1>
+                </div>
+                
+                <nav class="main-nav">
+                    <button class="nav-btn active" data-view="dashboard">
+                        <span class="nav-icon">📊</span>
+                        Dashboard
+                    </button>
+                    <button class="nav-btn" data-view="crawler">
+                        <span class="nav-icon">🕷️</span>
+                        New Crawl
+                    </button>
+                    <button class="nav-btn" data-view="history">
+                        <span class="nav-icon">📜</span>
+                        History
+                    </button>
+                    <button class="nav-btn" data-view="settings">
+                        <span class="nav-icon">⚙️</span>
+                        Settings
+                    </button>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+            <!-- Dashboard View -->
+            <section id="dashboard-view" class="view active">
+                <div class="view-header">
+                    <h2>Dashboard</h2>
+                    <p class="subtitle">Monitor your web crawling activities</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">🎯</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Total Crawls</p>
+                            <h3 class="stat-value" id="total-crawls">0</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">📄</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Pages Crawled</p>
+                            <h3 class="stat-value" id="pages-crawled">0</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">⚡</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Active Crawlers</p>
+                            <h3 class="stat-value" id="active-crawlers">0</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">💾</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Data Collected</p>
+                            <h3 class="stat-value" id="data-size">0 MB</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="recent-crawls">
+                        <h3>Recent Crawls</h3>
+                        <div id="recent-crawls-list" class="crawls-list">
+                            <div class="empty-state">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                <p>No crawls yet. Start your first crawl!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- New Crawl View -->
+            <section id="crawler-view" class="view">
+                <div class="view-header">
+                    <h2>Configure New Crawl</h2>
+                    <p class="subtitle">Set up your web crawling parameters</p>
+                </div>
+
+                <form id="crawler-form" class="crawler-form">
+                    <div class="form-section">
+                        <h3>Basic Configuration</h3>
+                        
+                        <div class="form-group">
+                            <label for="crawl-name">Crawl Name</label>
+                            <input type="text" id="crawl-name" placeholder="My Website Crawl" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="seed-urls">Seed URLs (one per line)</label>
+                            <textarea id="seed-urls" rows="4" placeholder="https://example.com&#10;https://example.com/page1" required></textarea>
+                            <small>Enter the starting URLs for the crawl</small>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="max-depth">Max Crawl Depth</label>
+                                <input type="number" id="max-depth" value="2" min="0" max="10">
+                                <small>Maximum depth to crawl (0 = unlimited)</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="max-pages">Max Pages</label>
+                                <input type="number" id="max-pages" value="100" min="1" max="10000">
+                                <small>Maximum number of pages to crawl</small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="num-crawlers">Number of Threads</label>
+                                <input type="number" id="num-crawlers" value="4" min="1" max="10">
+                                <small>Concurrent crawler threads</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="politeness-delay">Politeness Delay (ms)</label>
+                                <input type="number" id="politeness-delay" value="200" min="0" max="5000" step="100">
+                                <small>Delay between requests</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Filtering Options</h3>
+                        
+                        <div class="form-group">
+                            <label for="url-pattern">URL Pattern (regex)</label>
+                            <input type="text" id="url-pattern" placeholder="^https://example\.com/.*">
+                            <small>Only crawl URLs matching this pattern</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exclude-pattern">Exclude Pattern (regex)</label>
+                            <input type="text" id="exclude-pattern" value=".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$">
+                            <small>Skip URLs matching this pattern</small>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="follow-redirects" checked>
+                                <span>Follow Redirects</span>
+                            </label>
+                            
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="respect-robots" checked>
+                                <span>Respect robots.txt</span>
+                            </label>
+                            
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="include-binary">
+                                <span>Include Binary Content</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="reset-form">Reset</button>
+                        <button type="submit" class="btn btn-primary">
+                            <span>Start Crawling</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Live Crawler Status -->
+                <div id="crawler-status" class="crawler-status hidden">
+                    <div class="status-header">
+                        <h3>Crawling in Progress</h3>
+                        <button class="btn btn-danger" id="stop-crawler">Stop Crawl</button>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="crawl-progress"></div>
+                        </div>
+                        <span class="progress-text" id="progress-text">0%</span>
+                    </div>
+
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <span class="status-label">Pages Processed</span>
+                            <span class="status-value" id="status-processed">0</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Queue Size</span>
+                            <span class="status-value" id="status-queue">0</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Average Speed</span>
+                            <span class="status-value" id="status-speed">0 pages/sec</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Elapsed Time</span>
+                            <span class="status-value" id="status-time">00:00:00</span>
+                        </div>
+                    </div>
+
+                    <div class="live-log">
+                        <h4>Live Log</h4>
+                        <div id="live-log-content" class="log-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History View -->
+            <section id="history-view" class="view">
+                <div class="view-header">
+                    <h2>Crawl History</h2>
+                    <p class="subtitle">View and manage your previous crawls</p>
+                </div>
+
+                <div class="history-controls">
+                    <input type="search" id="history-search" placeholder="Search crawls..." class="search-input">
+                    <button class="btn btn-secondary" id="clear-history">Clear All History</button>
+                </div>
+
+                <div id="history-list" class="history-list">
+                    <div class="empty-state">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                        </svg>
+                        <p>No crawl history available</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings View -->
+            <section id="settings-view" class="view">
+                <div class="view-header">
+                    <h2>Settings</h2>
+                    <p class="subtitle">Configure application preferences</p>
+                </div>
+
+                <div class="settings-container">
+                    <div class="settings-section">
+                        <h3>Appearance</h3>
+                        <div class="setting-item">
+                            <label>Theme</label>
+                            <select id="theme-select" class="select-input">
+                                <option value="auto">Auto (System)</option>
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Default Crawler Settings</h3>
+                        <div class="setting-item">
+                            <label>User Agent String</label>
+                            <input type="text" id="default-user-agent" class="text-input" 
+                                   value="WebCrawler4J/1.0 (https://github.com/webcrawler4j)">
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label>Storage Location</label>
+                            <select id="storage-type" class="select-input">
+                                <option value="indexeddb">IndexedDB (Recommended)</option>
+                                <option value="localstorage">LocalStorage</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Data Management</h3>
+                        <button class="btn btn-secondary" id="export-settings">Export Settings</button>
+                        <button class="btn btn-secondary" id="import-settings">Import Settings</button>
+                        <button class="btn btn-danger" id="clear-all-data">Clear All Data</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Container -->
+    <div id="modal-container" class="modal-container hidden"></div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/crawler.js"></script>
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
