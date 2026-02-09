@@ -1,4 +1,4 @@
-# WebCrawler4J 🕷️
+# WebCrawler 🕷️
 
 A powerful, modern web crawler built entirely with HTML, CSS, and JavaScript. Inspired by the popular crawler4j Java library, WebCrawler4J brings professional web crawling capabilities directly to your browser.
 
@@ -300,7 +300,5 @@ This project is licensed under the Apache License 2.0 - see the LICENSE file for
 - [ ] Browser extension version
 
 ---
-
-Made with ❤️ by the WebCrawler Team
 
 **Star this project if you find it useful!** ⭐
