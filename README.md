@@ -1,10 +1,9 @@
 # WebCrawler 🕷️
 
-A powerful, modern web crawler built entirely with HTML, CSS, and JavaScript. Inspired by the popular crawler4j Java library, WebCrawler4J brings professional web crawling capabilities directly to your browser.
+A powerful, modern web crawler built entirely with HTML, CSS, and JavaScript. Inspired by the popular crawler4j Java library, WebCrawler brings professional web crawling capabilities directly to your browser.
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)
-![Made with Love](https://img.shields.io/badge/made%20with-❤️-red.svg)
 
 ## ✨ Features
 
